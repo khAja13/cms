@@ -5,12 +5,14 @@ import React from 'react';
 
 type TimeCodeCommentProps = {
   comment: string;
+  courseId: string;
   possiblePath: string;
   searchParams: QueryParams;
 };
 
 const TimeCodeComment: React.FC<TimeCodeCommentProps> = ({
   comment,
+  courseId,
   possiblePath,
   searchParams,
 }) => {
@@ -44,9 +46,13 @@ const TimeCodeComment: React.FC<TimeCodeCommentProps> = ({
         <Link
           key={`timecode-${match.index}`}
           className="text-blue-500 hover:underline"
-          href={getUpdatedUrl(`/courses/${possiblePath}`, searchParams, {
-            timestamp: timeInSeconds,
-          })}
+          href={getUpdatedUrl(
+            `/courses/${courseId}/${possiblePath}`,
+            searchParams,
+            {
+              timestamp: timeInSeconds,
+            },
+          )}
         >
           {match[0]}
         </Link>,
